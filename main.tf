@@ -17,4 +17,5 @@ module "vpc" {
 
 module "eks" {
   source = "./eks"
+  vpc_id = module.vpc.output.id
 }
