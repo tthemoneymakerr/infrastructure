@@ -15,7 +15,11 @@ module "vpc" {
   source = "./vpc"
 }
 
+data "aws_vpc" "main" {
+  id = module.vpc.output.vpc_id
+}
+
 module "eks" {
   source = "./eks"
-  vpc_id = module.vpc.output.vpc_id
+  vpc_id = data.aws_vpc.id
 }
